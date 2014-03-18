@@ -3,7 +3,11 @@
     b 
       - if comment.user.present?
         = comment.user.name
-  blockquote
-    = comment.body
-  p 
-    = link_to "Удалить комментарий", post_comment_path(@post, comment), method: :delete, class: 'btn btn-danger btn-xs'
+  .col-md-1
+    .glyphicon.glyphicon-user
+  .col-md-11
+    blockquote
+      = comment.body
+  - if can? :delete, Comment
+    p 
+      = link_to "Удалить комментарий", post_comment_path(@post, comment), method: :delete, class: 'btn btn-danger btn-xs'
