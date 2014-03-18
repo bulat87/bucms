@@ -1,0 +1,11 @@
+- if can? :create, Post
+	p = link_to "Создать пост", new_post_path, class: 'btn btn-default btn-lg btn-block'
+- @posts.each do |post|
+  h3 = link_to post.title, post
+  .label.label-info = post.created_at.strftime "%d/%m/%Y"
+  p = truncate(post.content.html_safe, length: 460, :omission => "..." , :escape => false)
+  p = link_to "Читать далее...", post, class: 'label label-info'
+  .glyphicon.glyphicon-comment Комменатриев(#{post.comments.count})
+  p
+    .glyphicon.glyphicon-tag Теги:
+    = post.tag_list.map { |t| link_to t, tag_path(t), class: 'label label-default' }.join(" ").html_safe

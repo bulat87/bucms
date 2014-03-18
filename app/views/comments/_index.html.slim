@@ -1,0 +1,9 @@
+- @post.comments.each do |comment|
+  p
+    b 
+      - if comment.user.present?
+        = comment.user.name
+  blockquote
+    = comment.body
+  p 
+    = link_to "Удалить комментарий", post_comment_path(@post, comment), method: :delete, class: 'btn btn-danger btn-xs'

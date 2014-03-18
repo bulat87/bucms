@@ -1,0 +1,15 @@
+= form_for(@post) do |f|
+  .form-group
+    label
+      = f.label "Заголовок статьи", class: 'control-label'
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    label
+      = f.label "Текст статьи", class: 'control-label'
+    = f.text_area :content, class: 'redactor'
+  .form-group
+    label
+      = f.label "Теги(разделять запятыми)", class: 'control-label'
+    = f.text_field :tag_list, class: 'form-control'
+  .actions
+    = f.submit "Подтвердить", class: 'btn btn-success'

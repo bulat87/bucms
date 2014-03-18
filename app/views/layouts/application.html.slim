@@ -1,0 +1,48 @@
+doctype
+html
+  head
+    title Own Paradigm
+    = stylesheet_link_tag    'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+body
+  .navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        = link_to " Own Paradigm", root_path, class: "navbar-brand"
+        button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      .navbar-collapse.collapse#navbar-main
+        ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            li= link_to "Учетная запись", edit_user_registration_path
+            li= link_to "Выйти", destroy_user_session_path
+          - else
+            li= link_to "Регистрация", new_user_registration_path
+            li= link_to "Войти", new_user_session_path
+  .container.main
+    .col-lg-8.post
+      = yield
+    .col-lg-4
+      .panel.panel-primary
+        .panel-heading 
+          h3.panel-title Облако тегов
+        .panel-body
+          - tag_cloud(Post.tag_counts, %w(css1 css2 css3 css4)) do |tag, css_class|
+            = link_to tag.name, tag_path(tag.name), class: css_class
+      .panel.panel-primary
+        .panel-heading 
+          h3.panel-title Последние комментарии
+        .panel-body
+          - @comments.each do |comment|
+            p 
+              b = comment.user.name
+              | : 
+              = link_to truncate(comment.body, length: 50), comment.post
+footer.container
+  .col-lg-12
+    | Copyright © Own Paradigm 
+    = DateTime.now.year 

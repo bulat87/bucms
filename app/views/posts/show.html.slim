@@ -1,0 +1,15 @@
+h1 = @post.title
+p = @post.content.html_safe
+p 
+  .glyphicon.glyphicon-tag Теги:
+  = @post.tag_list.map { |t| link_to t, tag_path(t), class: 'label label-default' }.join(' ').html_safe
+p
+  .glyphicon.glyphicon-comment Комменатриев(#{@post.comments.count})
+  = link_to "Поделиться VK", "http://vk.com/share.php?url=" + post_url, class: "label label-info"
+- if can? :manage, Post
+  p 
+    = link_to "Редактировать", edit_post_path(@post), class: 'btn btn-warning btn-xs'
+    = link_to "Удалить", @post, confirm: "Удалть статью?", method: :delete, class: 'btn btn-danger btn-xs'
+= render 'comments/index'
+- if user_signed_in?
+  = render 'comments/form'
