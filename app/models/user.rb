@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
 
   def add_role
-  	self.role = "admin"
+  	self.role = "reader"
   end
 end
