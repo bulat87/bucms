@@ -1,13 +1,13 @@
 - @post.comments.each do |comment|
-  p
-    b 
-      - if comment.user.present?
-        = comment.user.name
-  .col-md-1
-    .glyphicon.glyphicon-user
-  .col-md-11
-    blockquote
-      = comment.body
-  - if can? :delete, Comment
-    p 
+  p.col-md-12
+    .col-md-2
+      = image_tag avatar_url(comment.user)
+    .container-fluid
+      p
+        b 
+          - if comment.user.present?
+            = comment.user.name
+      p = comment.body
+  p.col-md-12
+    - if can? :delete, Comment 
       = link_to "Удалить комментарий", post_comment_path(@post, comment), method: :delete, class: 'btn btn-danger btn-xs'

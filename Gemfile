@@ -51,6 +51,8 @@ gem 'redactor-rails'
 gem 'carrierwave'
 
 gem 'mini_magick'
+
+gem 'will_paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
