@@ -1,7 +1,10 @@
 doctype
 html
   head
-    title Own Paradigm - блог о программировании, играх и технических новинках
+    title 
+      - if @post.present?
+        = @post.title + ' | '
+      | Own Paradigm - блог о программировании, играх и технических новинках
     = stylesheet_link_tag    'application', :media => 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
