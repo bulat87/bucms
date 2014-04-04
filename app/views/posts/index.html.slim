@@ -1,5 +1,5 @@
 - if can? :create, Post
-	p = link_to "Создать пост", new_post_path, class: 'btn btn-default btn-lg btn-block'
+  p = link_to "Создать пост", new_post_path, class: 'btn btn-default btn-lg btn-block'
 - @posts.each do |post|
   h3 = link_to post.title, post
   .label.label-info = post.created_at.strftime "%d/%m/%Y"
@@ -9,4 +9,4 @@
   p
     .glyphicon.glyphicon-tag Теги:
     = post.tag_list.map { |t| link_to t, tag_path(t), class: 'label label-default' }.join(" ").html_safe
-= will_paginate @posts
+= will_paginate @posts, previous_label: "<<", next_label: ">>", class: "pagination"
