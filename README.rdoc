@@ -2,5 +2,9 @@ This is my first open source web application. Blog app for the everyone who work
 But i want create something easer for people:) 
 I hope you will enjoy with it.
 All who want can test demo on http://31.131.16.211
-App still have many bugs, but i'm working on it;)
+
 Good luck!
+
+update
+
+Project is closed.
